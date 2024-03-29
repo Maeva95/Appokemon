@@ -1,25 +1,23 @@
-<div class="grid is-col-min-12 is-column-gap-3">
+<div class="grid is-col-min-12 is-column-gap-3 my-5 mx-4">
   @for (pokemon of pokemonList; track pokemon.id) {
   <div class="cell">
     <div (click)="goToPokemonId(pokemon)">
-      <div class="card">
-        <div class="card-image">
-          <figure class="image is-4by3">
+      <div class="media py-4 px-4" pokemonBorderCard>
+        <div class="media-left">
+          <figure class="image is-128x128">
             <img [src]="pokemon.picture" />
           </figure>
         </div>
-        <div class="card-content">
-          <div class="media">
-            <div class="media-content">
-              <p class="title is-4"></p>
-              <p class="subtitle is-6">{{ pokemon.name }}</p>
-            </div>
+        <div class="media-content">
+          <div class="content">
+            <p class="title is-4"></p>
+            <p class="subtitle is-6">{{ pokemon.name }}</p>
           </div>
           <div class="content">
             <p>{{ pokemon.created | date : "dd/MM/yyyy" }}</p>
             <div class="tags are-medium">
               @for (type of pokemon.types; track $index) {
-              <span class="{{ type | pokemonTypeColor }}">
+              <span class="tag {{ type | pokemonTypeColor }}">
                 {{ type }}
               </span>
               }
@@ -30,40 +28,7 @@
     </div>
   </div>
   }
-  <!-- <div *ngFor="let pokemon of pokemonList" class="cell">
-    <div (click)="goToPokemonId(pokemon)">
-      <div class="card">
-        <div class="card-image">
-          <figure class="image is-4by3">
-            <img [src]="pokemon.picture" />
-          </figure>
-        </div>
-        <div class="card-content">
-          <div class="media">
-            <div class="media-content">
-              <p class="title is-4"></p>
-              <p class="subtitle is-6">{{ pokemon.name }}</p>
-            </div>
-          </div>
-          <div class="content">
-            <p>{{ pokemon.created | date : "dd/MM/yyyy" }}</p>
-            <div class="tags are-medium">
-              <span
-                *ngFor="let type of pokemon.types"
-                class="{{ type | pokemonTypeColor }}"
-              >
-                {{ type }}
-              </span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div> -->
   <a class="icon is-large" routerLink="/pokemon/add">
     <i class="fa fa-plus-circle"> ➕ </i>
   </a>
-
-  <div>pokemonlist</div>
 </div>

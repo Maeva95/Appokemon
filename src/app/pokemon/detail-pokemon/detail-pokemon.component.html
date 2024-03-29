@@ -1,1 +1,73 @@
-<p>detail-pokemon works!</p>
+<div class="row">
+  @if (pokemon) {
+  <div class="col s12 m8 offset-m2">
+    <section class="hero">
+      <div class="hero-body">
+        <p class="title">{{ pokemon.name }}</p>
+      </div>
+    </section>
+    <div class="card my-6 mx-6 px-6 py-6">
+      <div class="card-image">
+        <img [src]="pokemon.picture" />
+      </div>
+      <div class="card-stacked">
+        <div class="card-content">
+          <table class="bordered striped">
+            <tbody>
+              <tr>
+                <td>Nom</td>
+                <td>
+                  <strong>{{ pokemon.name }}</strong>
+                </td>
+              </tr>
+              <tr>
+                <td>Points de vie</td>
+                <td>
+                  <strong>{{ pokemon.hp }}</strong>
+                </td>
+              </tr>
+              <tr>
+                <td>Dégâts</td>
+                <td>
+                  <strong>{{ pokemon.cp }}</strong>
+                </td>
+              </tr>
+              <tr>
+                <td>Types</td>
+                <td>
+                  @for (type of pokemon.types; track $index) {
+                  <span class="tag {{ type | pokemonTypeColor }}">
+                    {{ type }}
+                  </span>
+                  }
+                </td>
+              </tr>
+              <tr>
+                <td>Date de création</td>
+                <td>
+                  <em>{{ pokemon.created | date : "dd/MM/yyyy" }}</em>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card-footer mr-6">
+          <a (click)="goToPokemonList()" class="card-footer-item">Retour</a>
+          <a (click)="goToEditPokemon(pokemon)" class="card-footer-item"
+            >Éditer</a
+          >
+          <a (click)="deletePokemon(pokemon)" class="card-footer-item"
+            >Supprimer</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+  }
+</div>
+
+<!-- @if (!pokemon) {
+    <h4 class="center">
+        <app-loader></app-loader>
+    </h4>
+} -->

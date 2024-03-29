@@ -15,7 +15,6 @@ import { BorderCardDirective } from '../border-card.directive';
     BorderCardDirective,
     DatePipe,
     RouterLink,
-    NgFor,
   ],
   templateUrl: './list-pokemon.component.html',
   styleUrl: './list-pokemon.component.scss'
@@ -39,7 +38,7 @@ export class ListPokemonComponent implements OnInit {
   }
   
   goToPokemonId(pokemon: PokemonModel) {
-    this.router.navigate(['/pokemons', pokemon.id])
+    this.router.navigate(['/pokemon', pokemon.id])
   }
 }
 

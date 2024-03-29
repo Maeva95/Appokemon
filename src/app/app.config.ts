@@ -1,7 +1,7 @@
 import { ApplicationConfig, importProvidersFrom } from '@angular/core';
 import { provideRouter, withComponentInputBinding } from '@angular/router';
 import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
-import { provideHttpClient, withFetch, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { Routes } from '@angular/router';
 import { AuthGuard } from './auth.guard';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
@@ -31,7 +31,7 @@ export const appConfig: ApplicationConfig = {
     //provideHttpClient(withFetch()),
     provideHttpClient(withInterceptorsFromDi()),
     importProvidersFrom(BrowserModule, HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, {dataEncapsulation: false})),
-    provideRouter(routes, withComponentInputBinding()),
+    provideRouter(routes),
     provideClientHydration(),
   ]
 };

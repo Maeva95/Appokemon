@@ -1,4 +1,4 @@
-import { HttpClient, HttpErrorResponse } from "@angular/common/http";
+import { HttpClient, HttpErrorResponse, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable, catchError, tap, throwError } from "rxjs";
 import { PokemonModel } from "./pokemon.model";
@@ -24,10 +24,36 @@ export class PokemonService {
         )
     }
 
+    deletePokemonById(pokemonId: number): Observable<PokemonModel|undefined> {
+        return this.http.delete<PokemonModel>(`api/pokemons/${pokemonId}`).pipe(
+            tap((response) => this.log(response)),
+            catchError((error) => this.handleError(error))
+        )
+    }
+
+    addNewPokemon(pokemon: PokemonModel): Observable<PokemonModel> {
+        const httpOptions = {
+            headers: new HttpHeaders({ 'Content-type': 'application/json'})
+        }
+        return this.http.post<PokemonModel>('api/pokemons/', pokemon, httpOptions).pipe(
+            tap((response) => this.log(response)),
+            catchError((error) => this.handleError(error))
+        )
+    }
+    updatePokemon(pokemon: PokemonModel): Observable<PokemonModel> {
+        const httpOptions = {
+            headers: new HttpHeaders({ 'Content-type': 'application/json'})
+        }
+        return this.http.put<PokemonModel>('api/pokemons/', pokemon, httpOptions).pipe(
+            tap((response) => this.log(response)),
+            catchError((error) => this.handleError(error))
+        )
+    }
+
     private log(response: any) {
         console.table(response)
     }
-    
+
     private handleError(error: HttpErrorResponse) {
         if (error.status === 0) {
             console.error(`Une erreur s'est produite`, error.error)

@@ -1,1 +1,10 @@
-<p>edit-pokemon works!</p>
+<div class="card">
+  <h2>Éditer {{ pokemon?.name }}</h2>
+  @if (pokemon) {
+  <p>
+    <img [src]="pokemon.picture" alt="" />
+  </p>
+  } @if (pokemon) {
+  <app-pokemon-form [pokemon]="pokemon"></app-pokemon-form>
+  }
+</div>
