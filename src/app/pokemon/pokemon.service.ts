@@ -1,12 +1,11 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Observable, catchError, of, tap } from "rxjs";
+import { Observable, catchError, tap, throwError } from "rxjs";
 import { PokemonModel } from "./pokemon.model";
-import { error } from "console";
+// import { error } from "console";
 
-@Injectable({
-    providedIn: 'root'
-})
+
+@Injectable()
 
 export class PokemonService {
     constructor(private http: HttpClient) {}
@@ -14,24 +13,28 @@ export class PokemonService {
     getPokemonList(): Observable<PokemonModel[]> {
         return this.http.get<PokemonModel[]>('api/pokemons').pipe(
             tap((response) => this.log(response)),
-            catchError((error) => this.handleError(error, undefined)
-            )
-        )
+            catchError((error) => this.handleError(error))
+        );
     }
 
-    getPokemonById(pokeminId: number): Observable<PokemonModel|undefined> {
-        return this.http.get<PokemonModel>(`api/pokemons/${pokeminId}`).pipe(
+    getPokemonById(pokemonId: number): Observable<PokemonModel|undefined> {
+        return this.http.get<PokemonModel>(`api/pokemons/${pokemonId}`).pipe(
             tap((response) => this.log(response)),
-            catchError((error) => this.handleError(error, undefined))
+            catchError((error) => this.handleError(error))
         )
     }
 
-    private log(response: PokemonModel[]|PokemonModel|undefined) {
+    private log(response: any) {
         console.table(response)
     }
-    private handleError(error: Error, errorValue: any) {
-        console.error(error)
-        return of(errorValue)
+    
+    private handleError(error: HttpErrorResponse) {
+        if (error.status === 0) {
+            console.error(`Une erreur s'est produite`, error.error)
+        } else {
+            console.error(`Le serveur a retourné le code ${error.status}, body est: `, error.error)
+        }
+        return throwError(() => new Error('Something bad happened'))
     }
 
     getPokemonTypeList() : string[] {

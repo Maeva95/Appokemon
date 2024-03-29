@@ -1,0 +1,48 @@
+<section class="hero">
+  <div class="hero-body">
+    <p class="title">Page de connexion</p>
+    <p class="subtitle">
+      <em>{{ message }}</em>
+    </p>
+  </div>
+</section>
+<form #loginForm="ngForm">
+  <div class="field">
+    <label class="label" for="name">Name</label>
+    <div class="control">
+      <input
+        class="input"
+        type="text"
+        id="name"
+        [(ngModel)]="name"
+        name="name"
+        required
+      />
+    </div>
+  </div>
+  <div class="field">
+    <label class="label" for="password">Password</label>
+    <div class="control">
+      <input
+        class="input"
+        type="password"
+        id="password"
+        [(ngModel)]="password"
+        name="password"
+        required
+      />
+    </div>
+  </div>
+  <div class="field is-grouped">
+    <div class="control">
+      <button
+        class="button is-link"
+        type="submit"
+        (click)="login()"
+        *ngIf="!auth.isLoggedIn"
+      >
+        Se connecter
+      </button>
+    </div>
+  </div>
+</form>
