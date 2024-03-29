@@ -35,6 +35,7 @@
             required
             [(ngModel)]="pokemon.picture"
             name="picture"
+            placeholder="https://assets.pokemon.com/assets/cms2/img/pokedex/detail/xxx.png"
             #picture="ngModel"
           />
           <div
@@ -92,24 +93,22 @@
         <form class="form-group">
           <label for="types">Types</label>
           @for (type of types; track $index) {
-          <p>
-            <label>
-              <input
-                type="checkbox"
-                class="filled-in"
-                id="{{ type }}"
-                [value]="type"
-                [checked]="hasType(type)"
-                [disabled]="!isTypesValid(type)"
-                (change)="selectType($event, type)"
-              />
-              <span [attr.for]="type">
-                <div class="tag {{ type | pokemonTypeColor }}">
-                  {{ type }}
-                </div>
-              </span>
-            </label>
-          </p>
+          <label class="checkbox">
+            <input
+              type="checkbox"
+              class="filled-in"
+              id="{{ type }}"
+              [value]="type"
+              [checked]="hasType(type)"
+              [disabled]="!isTypesValid(type)"
+              (change)="selectType($event, type)"
+            />
+            <span [attr.for]="type">
+              <div class="tag {{ type | pokemonTypeColor }}">
+                {{ type }}
+              </div>
+            </span>
+          </label>
           }
         </form>
 

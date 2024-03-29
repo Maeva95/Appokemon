@@ -10,8 +10,6 @@ import { DetailPokemonComponent } from './pokemon/detail-pokemon/detail-pokemon.
   imports: [
     HeaderComponent,
     RouterOutlet,
-    //ListPokemonComponent,
-    //DetailPokemonComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: '../assets/styles/main.scss',
