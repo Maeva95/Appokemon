@@ -28,10 +28,9 @@ export const routes: Routes = [
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    //provideHttpClient(withFetch()),
     provideHttpClient(withInterceptorsFromDi()),
     importProvidersFrom(BrowserModule, HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, {dataEncapsulation: false})),
-    provideRouter(routes),
+    provideRouter(routes, withComponentInputBinding()),
     provideClientHydration(),
   ]
 };

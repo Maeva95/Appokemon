@@ -2,7 +2,7 @@
   @for (pokemon of pokemonList; track pokemon.id) {
   <div class="cell">
     <div (click)="goToPokemonId(pokemon)">
-      <div class="media py-4 px-4" pokemonBorderCard>
+      <div class="box media py-4 px-4 is-rounded" pokemonBorderCard>
         <div class="media-left">
           <figure class="image is-128x128">
             <img [src]="pokemon.picture" />
@@ -15,7 +15,7 @@
           </div>
           <div class="content">
             <p>{{ pokemon.created | date : "dd/MM/yyyy" }}</p>
-            <div class="tags are-medium">
+            <div class="tags are-small">
               @for (type of pokemon.types; track $index) {
               <span class="tag {{ type | pokemonTypeColor }}">
                 {{ type }}
@@ -28,7 +28,10 @@
     </div>
   </div>
   }
-  <a class="icon is-large" (click)="addPokemon()">
-    <i class="fa fa-plus-circle"> ➕ </i>
+  <a class="box icon-text has-text-info" (click)="addPokemon()">
+    <span class="icon">
+      <i class="fas fa-2x fa-solid fa-circle-plus"></i>
+    </span>
+    <span class="pl-3">Créer un pokémon</span>
   </a>
 </div>

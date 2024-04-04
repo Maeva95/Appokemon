@@ -1,0 +1,24 @@
+<div class="row">
+  <div class="field is-grouped col s12 m6 offset-m3">
+    <div class="control is-expanded">
+      <input
+        #searchBox
+        (keyup)="search(searchBox.value)"
+        placeholder="Rechercher un pokémon"
+        class="input is-rounded is-primary"
+        type="text"
+      />
+      <ul multiple size="12" class="dropdown-content menu-list">
+        @for (pokemon of pokemonList$ | async; track $index) {
+        <li
+          value="{{ pokemon.name }}"
+          (click)="goToDetail(pokemon)"
+          class="dropdown-item"
+        >
+          {{ pokemon.name }}
+        </li>
+        }
+      </ul>
+    </div>
+  </div>
+</div>

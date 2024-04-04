@@ -1,10 +1,13 @@
-<div class="card">
-  <h2>Éditer {{ pokemon?.name }}</h2>
+<div class="row">
+  <section class="hero">
+    <div class="hero-body">
+      <p class="title">Éditer {{ pokemon?.name }}</p>
+    </div>
+  </section>
   @if (pokemon) {
-  <p>
+  <div class="card my-6 mx-6 pt-6 px-6">
     <img [src]="pokemon.picture" alt="" />
-  </p>
-  } @if (pokemon) {
-  <app-pokemon-form [pokemon]="pokemon"></app-pokemon-form>
+    <app-pokemon-form [pokemon]="pokemon"></app-pokemon-form>
+  </div>
   }
 </div>

@@ -3,6 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './partials/header/header.component';
 import { ListPokemonComponent } from './pokemon/list-pokemon/list-pokemon.component';
 import { DetailPokemonComponent } from './pokemon/detail-pokemon/detail-pokemon.component';
+import { FooterComponent } from './partials/footer/footer.component';
 
 @Component({
   selector: 'app-root',
@@ -10,6 +11,7 @@ import { DetailPokemonComponent } from './pokemon/detail-pokemon/detail-pokemon.
   imports: [
     HeaderComponent,
     RouterOutlet,
+    FooterComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: '../assets/styles/main.scss',

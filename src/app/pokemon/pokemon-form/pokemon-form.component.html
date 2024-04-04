@@ -4,11 +4,11 @@
     <div class="col s8 offset-s2">
       <div class="card-panel">
         <!-- Pokemon name -->
-        <div class="form-group">
-          <label for="name">Nom</label>
+        <div class="form-group my-2">
+          <label for="name" class="mr-2">Nom</label>
           <input
             type="text"
-            class="form-control"
+            class="form-control input is-small"
             id="name"
             required
             pattern="^[a-zA-Z0-9àéèç]{1,25}$"
@@ -26,11 +26,11 @@
 
         <!-- Pokemon picture -->
         @if (isAddForm) {
-        <div class="form-group">
-          <label for="picture">Image</label>
+        <div class="form-group my-2">
+          <label for="picture" class="mr-2">Image</label>
           <input
             type="url"
-            class="form-control"
+            class="form-control input is-small"
             id="picture"
             required
             [(ngModel)]="pokemon.picture"
@@ -48,14 +48,14 @@
         }
 
         <!-- Pokemon hp -->
-        <div class="form-group">
-          <label for="hp">Point de vie</label>
+        <div class="form-group my-2">
+          <label for="hp" class="mr-2">Point de vie</label>
           <input
             type="number"
-            class="form-control"
+            class="form-control input is-small"
             id="hp"
             required
-            pattern="^[0-9]{1,3}$"
+            pattern="^[0-9]{1,2}$"
             [(ngModel)]="pokemon.hp"
             name="hp"
             #hp="ngModel"
@@ -69,11 +69,11 @@
         </div>
 
         <!-- Pokemon cp -->
-        <div class="form-group">
-          <label for="cp">Dégâts</label>
+        <div class="form-group my-2">
+          <label for="cp" class="mr-2">Dégâts</label>
           <input
             type="number"
-            class="form-control"
+            class="form-control input is-small"
             id="cp"
             required
             pattern="^[0-9]{1,2}$"
@@ -90,13 +90,13 @@
         </div>
 
         <!-- Pokemon types -->
-        <form class="form-group">
-          <label for="types">Types</label>
+        <form class="form-group my-2">
+          <label for="types" class="mb-2">Types</label>
           @for (type of types; track $index) {
-          <label class="checkbox">
+          <label class="label checkbox is-normal">
             <input
               type="checkbox"
-              class="filled-in"
+              class="is-small mr-2"
               id="{{ type }}"
               [value]="type"
               [checked]="hasType(type)"
@@ -104,7 +104,7 @@
               (change)="selectType($event, type)"
             />
             <span [attr.for]="type">
-              <div class="tag {{ type | pokemonTypeColor }}">
+              <div class="tag {{ type | pokemonTypeColor }} ml-2">
                 {{ type }}
               </div>
             </span>

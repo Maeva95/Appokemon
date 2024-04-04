@@ -1,10 +1,11 @@
 import { CommonModule, DatePipe, NgFor } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import {  Component, OnInit } from '@angular/core';
 import { PokemonTypeColorPipe } from '../pokemon-type-color.pipe';
 import { PokemonModel } from '../pokemon.model';
-import { Router, RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 import { PokemonService } from '../pokemon.service';
 import { BorderCardDirective } from '../border-card.directive';
+import { SearchPokemonComponent } from '../search-bar/search-bar.component';
 
 @Component({
   selector: 'app-list-pokemon',
@@ -14,9 +15,11 @@ import { BorderCardDirective } from '../border-card.directive';
     PokemonTypeColorPipe,
     BorderCardDirective,
     DatePipe,
+    SearchPokemonComponent
   ],
   templateUrl: './list-pokemon.component.html',
-  styleUrl: './list-pokemon.component.scss'
+  styleUrl: './list-pokemon.component.scss',
+  // changeDetection: ChangeDetectionStrategy.OnPush,
 })
 
 export class ListPokemonComponent implements OnInit {

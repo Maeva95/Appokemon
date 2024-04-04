@@ -1,10 +1,12 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Observable, catchError, tap, throwError } from "rxjs";
+import { Observable, catchError, of, tap, throwError } from "rxjs";
 import { PokemonModel } from "./pokemon.model";
 
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 
 export class PokemonService {
     constructor(private http: HttpClient) {}
@@ -44,6 +46,16 @@ export class PokemonService {
             headers: new HttpHeaders({ 'Content-type': 'application/json'})
         }
         return this.http.put<PokemonModel>('api/pokemons/', pokemon, httpOptions).pipe(
+            tap((response) => this.log(response)),
+            catchError((error) => this.handleError(error))
+        )
+    }
+
+    searchPokemonList(term: string): Observable<PokemonModel[]> {
+        if(term.length <= 1) {
+            return of([])
+        }
+        return this.http.get<PokemonModel[]>(`api/pokemons/?name=${term}`).pipe(
             tap((response) => this.log(response)),
             catchError((error) => this.handleError(error))
         )
