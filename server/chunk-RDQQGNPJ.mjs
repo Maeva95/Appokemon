@@ -1,0 +1,2 @@
+import './polyfills.server.mjs';
+import{A as n,K as s,P as a,j as r}from"./chunk-UWXAXBEJ.mjs";var l=(()=>{let t=class t{constructor(){this.isLoggedIn=!1}login(e,i){let c=e=="pikachu"&&i=="pikachu";return r(c).pipe(n(1e3),s(f=>this.isLoggedIn=f))}logout(){this.isLoggedIn=!1}};t.\u0275fac=function(i){return new(i||t)},t.\u0275prov=a({token:t,factory:t.\u0275fac,providedIn:"root"});let o=t;return o})();export{l as a};
